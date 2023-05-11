@@ -1,4 +1,6 @@
-package com.petkpetk.service.common;
+package com.petkpetk.service.common.controller;
+
+import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petkpetk.service.domain.user.dto.UserAccountDto;
+import com.petkpetk.service.domain.user.dto.UserAskDto;
 import com.petkpetk.service.domain.user.dto.request.UserAskRequest;
 import com.petkpetk.service.domain.user.dto.security.UserAccountPrincipal;
 import com.petkpetk.service.domain.user.service.UserAskService;
@@ -30,7 +33,7 @@ public class AboutController {
 
 	@GetMapping("/ask")
 	public String askView(Model model, @AuthenticationPrincipal UserAccountPrincipal userAccountPrincipal) {
-		model.addAttribute("ask", userAskService.getUserAskList(userAccountPrincipal));
+		model.addAttribute("ask", userAccountPrincipal == null ? null : userAskService.getUserAskList(userAccountPrincipal));
 		model.addAttribute("askRequest", new UserAskRequest());
 		return "about/ask";
 	}
