@@ -85,6 +85,7 @@ function submitModifyComment(commentId) {
         newComment.focus();
         return false;
     }
+
     newCommentForm.submit();
 }
 
@@ -155,6 +156,7 @@ function showModifyChildCommentBox(childCommentId) {
         childCommentBtns[i].style.display = "none";
     }
 
+
     $("#modifyChildComment" + childCommentId).val($("#childComment"+childCommentId).text());
 
     childComment.style.display = "none";
@@ -197,6 +199,8 @@ function submitModifyChildComment(childCommentId) {
         modifyChildComment.focus();
         return false;
     }
+
+    $("childCommentId" + childCommentId).val(childCommentId);
 
     modifyChildCommentForm.submit();
 }

@@ -58,7 +58,6 @@ function getMoreArticles() {
         },
         dataType: "json",
         success: function (result) {
-            console.log("가져옴");
             var article = result['article'];
             var totalCount = result['totalCount'];
 

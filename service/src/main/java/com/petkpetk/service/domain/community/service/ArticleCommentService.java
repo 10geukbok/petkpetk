@@ -58,8 +58,8 @@ public class ArticleCommentService {
 
 		articleCommentRepository.flush();
 	}
-	public void modifyComment(Long commentId, ArticleCommentPostRequest articleCommentPostRequest) {
-		ArticleComment articleComment = articleCommentRepository.findById(commentId).orElseThrow();
+	public void modifyComment(ArticleCommentPostRequest articleCommentPostRequest) {
+		ArticleComment articleComment = articleCommentRepository.findById(articleCommentPostRequest.getId()).orElseThrow();
 		articleComment.setContent(articleCommentPostRequest.getContent());
 
 		articleCommentRepository.flush();

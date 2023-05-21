@@ -1,6 +1,7 @@
 package com.petkpetk.service.common.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -62,18 +63,12 @@ public class APIController {
 
 	@RequestMapping("/items")
 	@ResponseBody
-	public Map<String, Object> getItems(ItemSearchDto itemSearchDto, Optional<Integer> page) {
-		Map<String, Object> result = new HashMap<>();
+	public List<MainItemDto> getItems(ItemSearchDto itemSearchDto, Optional<Integer> page) {
 
 		PageRequest pageRequest = PageRequest.of(page.orElse(0), 12);
 		Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageRequest);
 
-		Long itemCount = itemService.getItemCount();
-
-		result.put("result", items.getContent());
-		result.put("totalItemCount", itemCount);
-
-		return result;
+		return items.getContent();
 	}
 
 	@RequestMapping("/articles")

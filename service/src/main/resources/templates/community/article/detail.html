@@ -126,6 +126,7 @@
                             </div>
                             <div th:id="'childComment'+${childComment.id}" class="childComment" th:text="${childComment.content}"></div>
                             <form style="display:none;" th:id="'modifyChildCommentForm'+${childComment.id}" th:action="'/community/comment/modify/'+${article.id}+'/'+${childComment.id}" method="post"  th:object="${articleCommentPostRequest}">
+                                <input type="hidden" th:id="'childCommentId'+${childComment.id}" th:field="*{id}">
                                 <textarea class="modifyChildComment" th:id="'modifyChildComment'+${childComment.id}" th:field="*{content}"></textarea>
                             </form>
                         </div>

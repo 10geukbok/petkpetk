@@ -73,6 +73,10 @@ public class ItemService {
 		Item item = itemRepository.findById(itemUpdateRequest.getId())
 			.orElseThrow(ItemNotFoundException::new);
 		List<ItemImage> itemImages = item.getImages();
+		ItemImage representiveImage = itemImageRepository.findAllByItem_Id(item.getId());
+
+		representiveImage.setRepresentativeImageYn("N");
+
 		itemUpdateRequest.getImages().removeIf(MultipartFile::isEmpty);
 
 		List<ItemImage> notModifiedImages = itemUpdateRequest.getItemImageDtos()

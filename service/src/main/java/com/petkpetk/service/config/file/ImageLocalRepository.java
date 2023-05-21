@@ -94,8 +94,8 @@ public class ImageLocalRepository<T extends PetkpetkImage> {
 		return savedFileName;
 	}
 
-	public void deleteFile(String filePath, String originalImageName) {
-		Optional.ofNullable(originalImageName)
+	public void deleteFile(String filePath, String uniqueImageName) {
+		Optional.ofNullable(uniqueImageName)
 			.filter(name -> !name.isEmpty())
 			.map(name -> new File(filePath + "/" + name))
 			.filter(File::exists)

@@ -119,7 +119,7 @@ public class ItemDto {
 			itemRegisterRequest.getItemStatus(),
 			itemRegisterRequest.getImages(),
 			userAccountDto,
-			itemRegisterRequest.getTotalRating()
+			5.0
 		);
 	}
 }
