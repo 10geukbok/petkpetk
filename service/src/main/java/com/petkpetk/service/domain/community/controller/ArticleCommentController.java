@@ -25,14 +25,18 @@ public class ArticleCommentController {
 	}
 
 	@PostMapping("/delete/{articleId}/{commentId}")
-	public String deleteComment(@PathVariable("articleId") Long articleId, @PathVariable("commentId") Long commentId) {
+	public String deleteComment(@PathVariable("articleId") Long articleId,
+		@PathVariable("commentId") Long commentId) {
+
 		articleCommentService.deleteComment(commentId);
 		return "redirect:/community/articles/"+articleId;
 	}
 
 	@PostMapping("/modify/{articleId}/{commentId}")
-	public String modifyComment(@PathVariable("articleId") Long articleId, @PathVariable("commentId") Long commentId, ArticleCommentPostRequest articleCommentPostRequest) {
-		articleCommentService.modifyComment(commentId, articleCommentPostRequest);
+	public String modifyComment(@PathVariable("articleId") Long articleId,
+		ArticleCommentPostRequest articleCommentPostRequest) {
+
+		articleCommentService.modifyComment(articleCommentPostRequest);
 		return "redirect:/community/articles/"+articleId;
 	}
 }

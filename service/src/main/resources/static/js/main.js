@@ -32,74 +32,73 @@ function getItems() {
             page: num
         },
         dataType: "json",
-        success: function (datas) {
+        success: function (item) {
 
-            var result = datas['result'];
 
-            if (result.length > 0) {
-                for (let i = 0; i < result.length; i++) {
+            if (item.length > 0) {
+                for (let i = 0; i < item.length; i++) {
                     var content = "";
 
-                    content = "<a href='/item/" + result[i].id + "'><div class='productOneBlock'>" +
+                    content = "<a href='/item/" + item[i].id + "'><div class='productOneBlock'>" +
                         "<ul><div><div>" +
-                        "<li class='productPicture'><img class='productImg' src='" + result[i].imageUrl + "' alt='" + result[i].itemName + "'></li>" +
+                        "<li class='productPicture'><img class='productImg' src='" + item[i].imageUrl + "' alt='" + item[i].itemName + "'></li>" +
                         "<li class='productName_Status'><div class='itemTitle' style='display: flex;'>";
 
-                    if (result[i].itemStatus === "SOLD_OUT") {
+                    if (item[i].itemStatus === "SOLD_OUT") {
                         content += "<div class='productStatus' style='margin-right: 5px;'>품절</div>";
-                        content += "<div class='productName'  title='" + result[i].itemName + "'>" + result[i].itemName + "</div></div></li>";
+                        content += "<div class='productName'  title='" + item[i].itemName + "'>" + item[i].itemName + "</div></div></li>";
 
                     } else {
-                        content += "<div class='productName' title='" + result[i].itemName + "'>" + result[i].itemName + "</div></div></li>";
+                        content += "<div class='productName' title='" + item[i].itemName + "'>" + item[i].itemName + "</div></div></li>";
                     }
 
-                    content += "<li class='productDetail' title='상품 내용'>" + result[i].itemDetail + "</li>" +
+                    content += "<li class='productDetail' title='상품 내용'>" + item[i].itemDetail + "</li>" +
                         "<li class='productStar'>";
 
-                    if (result[i].totalRating == 5) {
+                    if (item[i].totalRating == 5) {
                         content += "<img class='star' src='/images/star5_0.png'>";
 
-                    } else if (result[i].totalRating == 4.5) {
+                    } else if (item[i].totalRating == 4.5) {
                         content += "<img class='star' src='/images/star4_5.png'>";
 
-                    } else if (result[i].totalRating == 4) {
+                    } else if (item[i].totalRating == 4) {
                         content += "<img class='star' src='/images/star4_0.png'>";
 
-                    } else if (result[i].totalRating == 3.5) {
+                    } else if (item[i].totalRating == 3.5) {
                         content += "<img class='star' src='/images/star3_5.png'>";
 
-                    } else if (result[i].totalRating == 3) {
+                    } else if (item[i].totalRating == 3) {
                         content += "<img class='star' src='/images/star3_0.png'>";
 
-                    } else if (result[i].totalRating == 2.5) {
+                    } else if (item[i].totalRating == 2.5) {
                         content += "<img class='star' src='/images/star2_5.png'>";
 
-                    } else if (result[i].totalRating == 2) {
+                    } else if (item[i].totalRating == 2) {
                         content += "<img class='star' src='/images/star2_0.png'>";
 
-                    } else if (result[i].totalRating == 1.5) {
+                    } else if (item[i].totalRating == 1.5) {
                         content += "<img class='star' src='/images/star1_5.png'>";
 
-                    } else if (result[i].totalRating == 1) {
+                    } else if (item[i].totalRating == 1) {
                         content += "<img class='star' src='/images/star1_0.png'>";
 
-                    } else if (result[i].totalRating == 0.5) {
+                    } else if (item[i].totalRating == 0.5) {
                         content += "<img class='star' src='/images/star0_5.png'>";
 
-                    } else if (result[i].totalRating == 0) {
+                    } else if (item[i].totalRating == 0) {
                         content += "<img class='star' src='/images/star5_0.png'>";
 
                     }
 
-                    content += "<span class='reviewCount' style='margin-left: 5px;'>(" + result[i].reviewCount + ")</span>";
+                    content += "<span class='reviewCount' style='margin-left: 5px;'>(" + item[i].reviewCount + ")</span>";
                     content += "</li></div>";
                     content += "<div><li class='productPriceDetail'>" +
-                        "<span class='originalPrice' style='margin-right: 5px;'>" + result[i].originalPrice + "</span>";
+                        "<span class='originalPrice' style='margin-right: 5px;'>" + item[i].originalPrice + "</span>";
 
-                    if (result[i].discountRate != 0) {
-                        content += "<span class='discountRate'>(" + result[i].discountRate + "%)</span>"
+                    if (item[i].discountRate != 0) {
+                        content += "<span class='discountRate'>(" + item[i].discountRate + "%)</span>"
                     }
-                    content += "<span class='productPrice'>" + result[i].price + "</span><span class='won'>원</span></li></div>";
+                    content += "<span class='productPrice'>" + item[i].price + "</span><span class='won'>원</span></li></div>";
                     content += "</div></ul></div></a>"
 
                     $(".mainContainer").append(content);

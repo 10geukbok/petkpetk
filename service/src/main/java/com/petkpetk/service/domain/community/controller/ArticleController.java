@@ -56,8 +56,8 @@ public class ArticleController {
 		Page<ArticleResponse> articles = articleService.searchArticles(searchType, searchValue, pageable)
 			.map(ArticleResponse::from);
 		List<Integer> pageBars = paginationService.getPageBars(pageable.getPageNumber(), articles.getTotalPages());
-		List<String> hashtags = articleService.getHashtags();
 		int totalCount = articleService.getArticleTotalCount();
+		List<String> hashtags = articleService.getHashtags();
 
 		model.addAttribute("hashtags", hashtags);
 		model.addAttribute("totalCount", totalCount);

@@ -28,11 +28,6 @@ public class MainController {
 
     private final ItemService itemService;
 
-    @GetMapping("/layout")
-    public String test() {
-        return "/layout/myPageLayout";
-    }
-
     @GetMapping("/")
     public String main(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model) {
 

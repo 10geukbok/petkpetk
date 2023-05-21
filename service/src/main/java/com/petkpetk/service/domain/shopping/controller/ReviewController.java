@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import javax.validation.Valid;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.petkpetk.service.domain.shopping.entity.item.Item;
 import com.petkpetk.service.domain.shopping.service.item.ItemService;
 import com.petkpetk.service.domain.shopping.service.review.ReviewService;
 import com.petkpetk.service.domain.user.dto.UserAccountDto;
+import com.petkpetk.service.domain.user.dto.security.UserAccountPrincipal;
 import com.petkpetk.service.domain.user.service.UserAccountService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,12 +38,12 @@ public class ReviewController {
 	private final ReviewService reviewService;
 
 	@PostMapping("/new")
-	public String addReview(@RequestParam("itemId") Long itemId, Authentication authentication,
-		@Valid ReviewRegisterRequest reviewRegisterRequest) {
+	public String addReview(@RequestParam("itemId") Long itemId,
+		@Valid ReviewRegisterRequest reviewRegisterRequest,
+		@AuthenticationPrincipal UserAccountPrincipal userAccountPrincipal) {
 
-		String email = authentication.getName();
 		Item item = itemService.getItem(itemId);
-		UserAccountDto userAccount = userAccountService.searchUserDto(email);
+		UserAccountDto userAccount = userAccountService.searchUserDto(userAccountPrincipal.getEmail());
 
 		reviewRegisterRequest.setUserAccountDto(userAccount);
 		reviewRegisterRequest.setItem(item);
